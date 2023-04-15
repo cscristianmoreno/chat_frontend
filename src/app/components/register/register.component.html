@@ -1,0 +1,73 @@
+<div ngClass="class_section_form">
+    <div ngClass="class_form_announcement">
+        <div ngClass="class_form_announcement_title_container">
+            <div ngClass="class_form_announcement_title">Bienvenido a</div>
+            <div ngClass="class_form_announcement_title">Chat Simulator</div>
+
+            <div ngClass="class_form_announcement_subtitle">
+                Chat Simulator es un simulador de chat en tiempo real el cual permite recibir y enviar mensajes, además de 
+                guardar contactos y eliminarlos.
+            </div>
+
+            <div ngClass="class_form_announcement_icon" [innerHTML]="icon"></div>
+        </div>
+
+        <form [formGroup]="form" ngClass="class_form_container">
+            <span ngClass="class_form_title">Registro</span>
+
+            <div ngClass="class_form_icon" [innerHTML]="iconRegister"></div>
+
+
+            <div ngClass="class_form_field_container">
+                <span ngClass="class_field_title">Nombre</span>
+                <input type="text" formControlName="name"/>
+                
+                <div [innerHTML]="checkFieldValidation('name')"></div>
+            </div>
+
+            <div ngClass="class_form_field_container">
+                <span ngClass="class_field_title">Apellido</span>
+                <input formControlName="lastname"/>
+
+                <div [innerHTML]="checkFieldValidation('lastname')"></div>
+            </div>
+
+            <div ngClass="class_form_field_container">
+                <span ngClass="class_field_title">Correo electrónico</span>
+                <input formControlName="email"/>
+
+                <div [innerHTML]="checkFieldValidation('email')"></div>
+            </div>
+
+            <div ngClass="class_form_field_container">
+                <span ngClass="class_field_title">Contraseña</span>
+                <input type="password" formControlName="password"/>
+
+                <div [innerHTML]="checkFieldValidation('password')"></div>
+            </div>
+
+            <div ngClass="class_form_field_container">
+                <span ngClass="class_field_title">Repetir contraseña</span>
+                <input type="password" formControlName="repeatPassword"/>
+
+                <div [innerHTML]="checkFieldValidation('repeatPassword')"></div>
+            </div>
+
+            <div ngClass="class_form_field_container">
+                <span ngClass="class_field_title">Imagen</span>
+                <input #idElementImage type="file" accept="image/jpeg" formControlName="photo"/>
+
+                <div [innerHTML]="checkFieldValidation('photo')"></div>
+            </div>
+            
+            
+            <div ngClass="class_form_button_container">
+                <!-- <span ngClass="class_form_message_error">{{messageLoginError}}</span> -->
+                <br/>
+                <button (click)="handleSubmit()" ngClass="class_form_button">REGISTRARSE</button>
+                <button (click)="handleChangeTemplate()" ngClass="class_form_button_answer_account">¿Tienes una cuenta? Inicia sesión</button>
+            </div>
+            
+        </form>
+    </div>
+</div>

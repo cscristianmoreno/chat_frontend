@@ -1,0 +1,99 @@
+<div ngClass="class_section_chat">
+    
+    <div #idElementMenu ngClass="class_chat_menu_container">
+        <div ngClass="class_chat_menu_profile_container">
+            <div ngClass="class_chat_image_container">
+                <img [src]="photo$ | async"/>
+            </div>
+
+            <span ngClass="class_chat_menu_profile_name">{{user.user_name}} {{user.user_lastname}}</span>
+            <i (click)="logout()" ngClass="fas fa-sign-out-alt"></i>
+        </div>
+
+        <div ngClass="class_chat_menu_header_container">
+            <div ngClass="class_chat_menu_search_container">
+                <i ngClass="fas fa-search"></i>
+                <input (keyup)="searchContact($event)" placeholder="Busca un contacto"/>
+            </div>
+        </div>
+
+        <div ngClass="class_chat_user_container">
+            <div #idElementContacts [attr.data-index]="items.id" [attr.data-messages]="0" (click)="handleSelectChat(i)" [ngClass]="'class_chat_user ' + ((chatIndex === i) ? 'class_chat_selected' : null)" *ngFor="let items of contacts$ | async; index as i">
+                <div ngClass="class_chat_image_container">
+                    <img src={{items.photo}}/>
+                </div>
+
+                <div ngClass="class_chat_user_information_container">
+                    <span ngClass="class_chat_user_information_name">{{items.name}} {{items.lastname}}</span>
+                    <span ngClass="class_chat_user_information_message">{{items.messages}}</span>
+                </div>
+                
+                <span ngClass="class_chat_user_information_date">{{messageDate(items.date)}}</span>
+
+                <span ngClass="class_chat_user_information_messages_number"></span>
+            </div>
+
+            <ng-template [ngIf]="(search$ | async)?.length">
+                <div style="margin-top: 30px;" ngClass="class_chat_user_information_results">
+                    <span>Usuarios: </span>
+                    <span>&nbsp;{{(search$ | async)?.length}}</span>
+                </div>
+
+                <div #idElementContacts *ngFor="let items of search$ | async; index as i" ngClass="class_chat_user">
+                    <div ngClass="class_chat_image_container">
+                        <img src={{items.photo}}/>
+                    </div>
+
+                    <div ngClass="class_chat_user_information_container">
+                        <span ngClass="class_chat_user_information_name">{{items.name}} {{items.lastname}}</span>
+                        <span ngClass="class_chat_user_information_message">{{items.messages}}</span>
+                    </div>
+
+                    <i #idElementButtonAddFriend (click)="addContact(items)" ngClass="fas fa-user-plus class_chat_user_information_add_contact"></i>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+
+    <div *ngIf="chatIndex !== -1" ngClass="class_chat_message_container">
+        <div ngClass="class_chat_message_header_container">
+            <div ngClass="class_chat_message_user_information_container">
+                <div ngClass="class_chat_message_user_information">
+                    <!-- <ng-component *ngIf="responsive$ | async as width"> -->
+                    <i (click)="openMenuResponsive()" style="position: absolute; left: -20px" ngClass="fas fa-arrow-left"></i>
+                    <!-- </ng-component> -->
+                    <div ngClass="class_chat_image_container">  
+                        <img src={{chatProfile}}/>
+                    </div>
+                    <span ngClass="class_chat_message_user_name">{{chatName}}</span>
+                </div>
+                
+                <div ngClass="class_chat_message_icon_container">
+                    <i ngClass="fas fa-video"></i>
+                    <i ngClass="fas fa-phone-alt"></i>
+                    <i ngClass="fas fa-ellipsis-v"></i>
+                </div>
+            </div>
+        </div>
+
+        <div #idChatInformationContainer ngClass="class_chat_messages_information_container">
+            <div [style.flex-direction]="(item.sender !== user.user_id) ? 'row' : 'row-reverse'" ngClass="class_chat_message_information" *ngFor="let item of messages$ | async; index as i">
+                
+                <div ngClass="class_chat_image_container">  
+                    <img [src]="(item.sender !== user.user_id) ? chatProfile : photo$ | async"/>
+                </div>
+
+                <div ngClass="class_chat_message">
+                    <span>{{item.message}}</span>
+                    <span ngClass="class_chat_message_date">{{messageDate(item.date)}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div ngClass="class_chat_message_write_container">
+            <textarea #idElementInput placeholder="Escribe tu mensaje"></textarea>
+            <!-- <input #idElementInput placeholder="Escribe tu mensaje"/> -->
+            <i (click)="handleSendMessage()" ngClass="fas fa-paper-plane"></i>
+        </div>
+    </div>
+</div>
