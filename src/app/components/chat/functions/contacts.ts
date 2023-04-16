@@ -7,8 +7,8 @@ export class AddContact {
         this.http.addContact(this.contact, this.id).subscribe({
             next: () => {
             },
-            error: (err) => {
-                throw new Error(err);
+            error: (error) => {
+                throw new Error(error.error);
             },
         });
     }

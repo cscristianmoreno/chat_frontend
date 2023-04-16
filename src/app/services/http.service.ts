@@ -4,7 +4,7 @@ import { FormGroup } from "@angular/forms";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { contactStruct, loginStruct, messageStruct } from "../interfaces/Interface";
 
-export const BACKEND_URL: string = "http://localhost:4000";
+export const BACKEND_URL: string = "https://chat-backend-delta.vercel.app";
 
 
 @Injectable({
@@ -30,7 +30,7 @@ export class HttpService {
     }
 
     public getDataByIndex(path: string, user_id: number) {
-        const http = this.http.get<any>(URL + path, {
+        const http = this.http.get<any>(BACKEND_URL + path, {
             params: {
                 id: user_id
             }
@@ -40,7 +40,7 @@ export class HttpService {
     }
 
     public getMessages(id: number, user_id: number) {
-        const http = this.http.get<messageStruct[]>(URL + "/messages", {
+        const http = this.http.get<messageStruct[]>(BACKEND_URL + "/messages", {
             params: {
                 id: id,
                 user_id: user_id
@@ -51,13 +51,13 @@ export class HttpService {
     }
 
     public sendMessages(message: messageStruct) {
-        const http = this.http.post(URL + "/messages", JSON.stringify(message));
+        const http = this.http.post(BACKEND_URL + "/messages", JSON.stringify(message));
         return http;
     }
 
     public userLogin(data: FormGroup) {
         console.log(data);
-        const http = this.http.post<loginStruct>(URL + "/login", data)
+        const http = this.http.post<loginStruct>(BACKEND_URL + "/login", data);
        
         return http;
     }
@@ -65,7 +65,7 @@ export class HttpService {
     public userRegister(data: FormGroup) {
         console.log(data);
 
-        const http = this.http.post(URL + "/register", data, {
+        const http = this.http.post(BACKEND_URL + "/register", data, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -75,12 +75,12 @@ export class HttpService {
     }
 
     public checkAuth(token: string) {
-        const http = this.http.post<boolean>(URL + "/auth", {})
+        const http = this.http.post<boolean>(BACKEND_URL + "/auth", {})
         return http;
     }
 
     public searchContact(param: string, id: number) {
-        const http = this.http.get<contactStruct[]>(URL + "/search", {
+        const http = this.http.get<contactStruct[]>(BACKEND_URL + "/search", {
             params: {
                 id: id,
                 search: param
@@ -96,7 +96,7 @@ export class HttpService {
             id: id, 
         }
 
-        const http = this.http.post(URL + "/add", params);
+        const http = this.http.post(BACKEND_URL + "/add", params);
         return http;
 
     }
