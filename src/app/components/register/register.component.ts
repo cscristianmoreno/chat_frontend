@@ -101,7 +101,7 @@ export class RegisterComponent implements AfterViewInit {
             }
         })
 
-        this.http.userRegister("/register", this.form.value).subscribe({
+        this.http.userRegister(this.form.value).subscribe({
             next: (res) => {
                 console.log(res);
             },

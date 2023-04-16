@@ -10,17 +10,16 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 
+
 export class AppComponent implements OnInit {
   showTemplate!: string;
-
-  URL: string = "http://localhost:4000";
-
+  
   constructor(private templateService: templateService, private cookies: CookieService, private http: HttpService) {
   }
-
+  
   public ngOnInit() {
     const cookies: string = this.cookies.get("token");
-
+    
     if (cookies.length) {
       this.http.checkAuth(cookies).subscribe({
         next: (res) => {
@@ -31,7 +30,7 @@ export class AppComponent implements OnInit {
         }
       })
     }
-
+    
     this.templateService.templateLogin$.subscribe({
       next: (res) => {
         this.showTemplate = res;

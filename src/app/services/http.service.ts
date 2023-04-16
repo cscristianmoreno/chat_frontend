@@ -4,7 +4,7 @@ import { FormGroup } from "@angular/forms";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { contactStruct, loginStruct, messageStruct } from "../interfaces/Interface";
 
-export const URL: string = "http://localhost:4000";
+export const BACKEND_URL: string = "http://localhost:4000";
 
 
 @Injectable({
@@ -62,10 +62,10 @@ export class HttpService {
         return http;
     }
 
-    public userRegister(path: string, data: FormGroup) {
+    public userRegister(data: FormGroup) {
         console.log(data);
 
-        const http = this.http.post(URL + path, data, {
+        const http = this.http.post(URL + "/register", data, {
             headers: {
                 "Content-Type": "application/json"
             }

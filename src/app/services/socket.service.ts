@@ -4,6 +4,7 @@ import * as connect from "socket.io-client";
 import { messageStruct } from "../interfaces/Interface";
 import { UserService } from "./user.service";
 import { CookieService } from "ngx-cookie-service";
+import { BACKEND_URL } from "./http.service";
 
 @Injectable({
     providedIn: "root"
@@ -14,9 +15,7 @@ export class SocketService {
     client: connect.Socket;
 
     constructor(private readonly data: UserService, cookies: CookieService) {
-        const URL: string = "http://localhost:4000";
-
-        this.client = connect.io(URL, {
+        this.client = connect.io(BACKEND_URL, {
             transports: [
                 "websocket"
             ],
