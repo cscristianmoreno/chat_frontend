@@ -55,8 +55,8 @@ export class LoginComponent implements AfterViewInit {
                 location.reload();
             },
             error: (error) => {
-                this.messageLoginError = "Ocurrió un error, inténtalo más tarde."
-                console.log(error);
+                this.messageLoginError = error.error;
+                console.log(error.error);
             }
         });
     }

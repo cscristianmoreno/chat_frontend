@@ -51,6 +51,7 @@
     align-items: center;
     width: 90%;
     height: 50px;
+    margin-top: 25px;
     /* padding: 10px; */
     background-color: #336699;
     color: #cccccc;
@@ -71,12 +72,11 @@
 }
 
 .class_chat_user_container {
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
     flex-direction: column;
     width: 100%;
-    height: auto;
     overflow: auto;
 }
 

@@ -59,6 +59,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     @ViewChild("idChatInformationContainer") idChatInformationContainer!: ElementRef;
     @ViewChildren("idElementContacts") idElementContacts!: ElementRef;
     @ViewChild("idElementMenu") idElementMenu!: ElementRef;
+    @ViewChild("idElementChatUserContainer") idElementChatUserContainer!: ElementRef;
     
     
     constructor(private service: HttpService, private renderer2: Renderer2, private readonly socket: SocketService, private readonly data: UserService) {
@@ -187,6 +188,9 @@ export class ChatComponent implements OnInit, OnDestroy {
         
         const idElementInput: ElementRef = this.renderer2.selectRootElement(this.idElementInput);
         const msg = idElementInput.nativeElement.value;
+
+        const idElementChatUserContainer: ElementRef = this.renderer2.selectRootElement(this.idElementChatUserContainer);
+        idElementChatUserContainer.nativeElement.scrollTop = 0;
         
         if (!msg.length) {
             return;
