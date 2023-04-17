@@ -24,6 +24,7 @@
         position: fixed;
         z-index: 1;
         width: 100% !important;
+        height: 100vh !important;
         /* margin-left: -100%; */
         transition: 0.25s;
     }
@@ -35,7 +36,7 @@
 
     .class_chat_message_container {
         width: 100% !important;
-        height: 100vh !important;
+        height: 100%;
     }
 
     .class_chat_message_user_information_container {
