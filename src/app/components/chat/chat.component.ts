@@ -143,15 +143,10 @@ export class ChatComponent implements OnInit, OnDestroy {
 
         this.chatIndex = id;
 
-
-        this.responsive$.subscribe((res) => {
-            // console.log(res);
-
-            if (res < 988) {
-                const element: ElementRef = this.renderer2.selectRootElement(this.idElementMenu);
-                this.renderer2.addClass(element.nativeElement, "class_chat_menu_container_hidden");
-            }
-        })
+        if (this.responsiveSubject.value < 988) {
+            const element: ElementRef = this.renderer2.selectRootElement(this.idElementMenu);
+            this.renderer2.addClass(element.nativeElement, "class_chat_menu_container_hidden");
+        }
 
         const contacts: contactStruct[] = this.contactUserSubject.value;
         
