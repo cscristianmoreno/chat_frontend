@@ -65,6 +65,7 @@
     background-color: unset;
     border: none;
     color: inherit;
+    width: 75%;
 }
 
 .class_chat_menu_search_container input::placeholder {

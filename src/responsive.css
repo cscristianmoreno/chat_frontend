@@ -20,7 +20,7 @@
     }
 
     .class_chat_menu_container {
-        position: absolute;
+        position: fixed;
         z-index: 1;
         width: 100% !important;
         /* margin-left: -100%; */
