@@ -141,6 +141,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
         // socket.emit("test");
 
+        
         this.chatIndex = id;
 
         this.messageSubject.next([]);
@@ -353,6 +354,10 @@ export class ChatComponent implements OnInit, OnDestroy {
     public openMenuResponsive() {
         const element: ElementRef = this.renderer2.selectRootElement(this.idElementMenu);
         this.renderer2.removeClass(element.nativeElement, "class_chat_menu_container_hidden");
+    }
+
+    public checkResponsive() {
+        return (this.responsiveSubject.value < 988) ? false : true;
     }
 
     public logout() {

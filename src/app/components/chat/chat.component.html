@@ -18,7 +18,7 @@
         </div>
 
         <div #idElementChatUserContainer ngClass="class_chat_user_container">
-            <div #idElementContacts [attr.data-index]="items.id" [attr.data-messages]="0" (click)="handleSelectChat(i)" [ngClass]="'class_chat_user ' + ((chatIndex === i) ? 'class_chat_selected' : null)" *ngFor="let items of contacts$ | async; index as i">
+            <div #idElementContacts [attr.data-index]="items.id" [attr.data-messages]="0" (click)="handleSelectChat(i)" [ngClass]="'class_chat_user ' + ((chatIndex === i && checkResponsive()) ? 'class_chat_selected' : null)" *ngFor="let items of contacts$ | async; index as i">
                 <div ngClass="class_chat_image_container">
                     <img src={{items.photo}}/>
                 </div>
