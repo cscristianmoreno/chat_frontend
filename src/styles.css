@@ -8,6 +8,10 @@
     font-family: "Open Sans", sans-serif;
 }
 
+:root {
+    --color-spinner: #5454da;
+}
+
 input {
     padding: 10px;
     border-left: 0px;
@@ -24,4 +28,36 @@ input {
 .class_field_title {
     color: #003399;
     font-weight: bolder;
+}
+
+.class_modal {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 50%);
+    position: fixed;
+    z-index: 100;
+    transition: 0.25s;
+}
+
+.class_spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    border-style: solid;
+    border-color: #3b3b3b;
+    border-radius: 100%;
+    border-width: 7px;
+    border-top-color: var(--color-spinner);
+    animation-name: class_spinner;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes class_spinner {
+    0% {
+        transform: rotate(-360deg);
+    }
 }

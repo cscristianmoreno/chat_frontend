@@ -143,6 +143,8 @@ export class ChatComponent implements OnInit, OnDestroy {
 
         this.chatIndex = id;
 
+        this.messageSubject.next([]);
+
         if (this.responsiveSubject.value < 988) {
             const element: ElementRef = this.renderer2.selectRootElement(this.idElementMenu);
             this.renderer2.addClass(element.nativeElement, "class_chat_menu_container_hidden");
@@ -164,7 +166,8 @@ export class ChatComponent implements OnInit, OnDestroy {
 
         const messages = new GetMessages(this.service);
         const msg = await messages.get(this.user.user_id, contacts[id].id);
-
+        
+        // this.messageSubject.subscribe();
         this.messageSubject.next(msg);
         this.chatPositionLastMessage();
     }

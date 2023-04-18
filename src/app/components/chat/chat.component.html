@@ -77,17 +77,23 @@
         </div>
 
         <div #idChatInformationContainer ngClass="class_chat_messages_information_container">
-            <div [style.flex-direction]="(item.sender !== user.user_id) ? 'row' : 'row-reverse'" ngClass="class_chat_message_information" *ngFor="let item of messages$ | async; index as i">
-                
-                <div ngClass="class_chat_image_container">  
-                    <img [src]="(item.sender !== user.user_id) ? chatProfile : photo$ | async"/>
-                </div>
+            <ng-template [ngIf]="(messages$ | async)?.length" [ngIfElse]="loadMessages">
+                <div [style.flex-direction]="(item.sender !== user.user_id) ? 'row' : 'row-reverse'" ngClass="class_chat_message_information" *ngFor="let item of messages$ | async; index as i">
+                    
+                    <div ngClass="class_chat_image_container">  
+                        <img [src]="(item.sender !== user.user_id) ? chatProfile : photo$ | async"/>
+                    </div>
 
-                <div ngClass="class_chat_message">
-                    <span>{{item.message}}</span>
-                    <span ngClass="class_chat_message_date">{{messageDate(item.date)}}</span>
+                    <div ngClass="class_chat_message">
+                        <span>{{item.message}}</span>
+                        <span ngClass="class_chat_message_date">{{messageDate(item.date)}}</span>
+                    </div>
                 </div>
-            </div>
+            </ng-template>
+
+            <ng-template #loadMessages>
+                <span ngClass="class_spinner"></span>
+            </ng-template>
         </div>
 
         <div ngClass="class_chat_message_write_container">

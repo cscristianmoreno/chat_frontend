@@ -1,6 +1,10 @@
 <div ngClass="class_section">
     <ng-template [ngIf]="showTemplate !== 'chat'" [ngIfElse]="templateChat">
         <ng-template [ngIf]="showTemplate === 'login'" [ngIfElse]="templateRegister">
+            <div *ngIf="(check$ | async) === true" ngClass="class_modal">
+                <span ngClass="class_spinner"></span>
+            </div>
+
             <app-login/>
         </ng-template>
 
