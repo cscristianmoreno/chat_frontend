@@ -91,10 +91,13 @@
                 </div>
             </ng-template>
 
-            <ng-template #loadMessages>
-                <span ngClass="class_spinner"></span>
-            </ng-template>
         </div>
+
+        <ng-template #loadMessages>
+            <div style="justify-content: center; align-items: center;" ngClass="class_chat_messages_information_container">
+                <span ngClass="class_spinner"></span>
+            </div>
+        </ng-template>
 
         <div ngClass="class_chat_message_write_container">
             <textarea #idElementInput placeholder="Escribe tu mensaje"></textarea>

@@ -2,6 +2,7 @@
     <ng-template [ngIf]="showTemplate !== 'chat'" [ngIfElse]="templateChat">
         <ng-template [ngIf]="showTemplate === 'login'" [ngIfElse]="templateRegister">
             <div *ngIf="(check$ | async) === true" ngClass="class_modal">
+                <span style="color: white; font-size: 18px;">Iniciando sesión...</span>
                 <span ngClass="class_spinner"></span>
             </div>
 
